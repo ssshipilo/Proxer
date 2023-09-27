@@ -48,12 +48,16 @@ ___
 Import the library into your project, and initialize the Proxer class, sample code to get 5 working proxies
 
 ```python
-import Proxer
+from Proxer import Proxer
+import os
 
 proxy = Proxer(file_path_output=os.path.join(os.getcwd(), "output.txt"), file_path_save=os.path.join(os.getcwd(), "save.txt"))
-result = proxy.get(5)
+result = proxy.update_db_proxy() # Update or add files with database where you can mix proxy servers database
+result = proxy.get(1) # Get the number of references, the answer in an array
 print(result)
 ```
+
+A huge database of proxy servers can be found ["here"](https://raw.githubusercontent.com/ssshipilo/Proxer/main/output.txt)
 
 #### Result:
 ![Result Proxer](https://github.com/ssshipilo/Proxer/blob/main/git/result.png)
