@@ -38,9 +38,7 @@ ___
 #### Dependency installation
     pip install -r requirements.txt
 
-___
 ## OR
-___
 
 #### Install library
     pip install Proxer
