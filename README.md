@@ -57,5 +57,5 @@ result = proxy.get(5)
 print(result)
 ```
 
-Result:
+#### Result:
 ![Result Proxer](https://github.com/ssshipilo/Proxer/blob/main/git/result.png)
