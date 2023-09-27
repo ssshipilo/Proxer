@@ -45,7 +45,7 @@ ___
 
 ## Starting Proxer
 
-Import the library into your project, and initialize the Proxer class, sample code to get 5 working proxies
+Import the library into your project, and initialize the Proxer class, sample code to get 1 working proxies
 
 ```python
 from Proxer import Proxer
