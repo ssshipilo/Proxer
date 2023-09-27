@@ -48,6 +48,8 @@ ___
 Import the library into your project, and initialize the Proxer class, sample code to get 5 working proxies
 
 ```python
+import Proxer
+
 proxy = Proxer(file_path_output=os.path.join(os.getcwd(), "output.txt"), file_path_save=os.path.join(os.getcwd(), "save.txt"))
 result = proxy.get(5)
 print(result)
