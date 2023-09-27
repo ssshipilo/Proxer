@@ -57,7 +57,7 @@ result = proxy.get(1) # Get the number of references, the answer in an array
 print(result)
 ```
 
-A huge database of proxy servers can be found ["here"](https://raw.githubusercontent.com/ssshipilo/Proxer/main/output.txt)
+A huge database of proxy servers can be found [here](https://raw.githubusercontent.com/ssshipilo/Proxer/main/output.txt)
 
 #### Result:
 ![Result Proxer](https://github.com/ssshipilo/Proxer/blob/main/git/result.png)
