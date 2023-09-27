@@ -5,7 +5,10 @@ The Proxer class provides methods to retrieve, validate, and save proxies.
 
 ## Initialization
 ```python
-proxy = Proxer(file_path_output="path_to_output_file", file_path_save="path_to_save_file")
+from Proxer import Proxer
+import os
+
+proxy = Proxer(file_path_output=os.path.join(os.getcwd(), "output.txt"), file_path_save=os.path.join(os.getcwd(), "save.txt"))
 ```
 
 *path must be absolute*
