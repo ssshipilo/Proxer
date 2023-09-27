@@ -26,11 +26,7 @@ ___
 - Checking proxies for performance, using popular sites giants for verification
 
 ## Documentation
-<div style="text-align: center; width: 100%; background: linear-gradient(45deg, #ff00ff, rgb(0, 119, 255)); padding: 10px 10px; border-radius: 5px; color: #fff;">
-    <a href="">
-        Go to documentation
-    </a>
-</div>
+[![Read Documentation](https://github.com/ssshipilo/Proxer/blob/main/git/btn.png)](https://github.com/ssshipilo/Proxer/blob/main/git/documentation.md)
 
 ## Steps 
 
@@ -42,7 +38,9 @@ ___
 #### Dependency installation
     pip install -r requirements.txt
 
-___ or ___
+___
+## OR
+___
 
 #### Install library
     pip install Proxer
