@@ -29,8 +29,9 @@ result = proxy.update_db_proxy() # Update or add files with database where you c
 result = proxy.get(1) # Get the number of references, the answer in an array
 print(result)
 
-result = proxy.parse("./test.txt") # Parses new proxies to a file
-result = proxy.clear_db() # Clearing databases, you can delete 2 at once, proxy list and verified proxy list
+proxy.parse("./test.txt") # Parses new proxies to a file
+print(proxy.check_proxy("216.80.39.89:3129")) # Checks if this proxy is working
+proxy.clear_db() # Clearing databases, you can delete 2 at once, proxy list and verified proxy list
 ```
 
 ## Methods
