@@ -19,7 +19,7 @@ file_path_save: path to the file where the list of working proxies will be saved
 
 ---
 
-### To summarize
+## To summarize
 ```python
 from Proxer import Proxer
 import os
