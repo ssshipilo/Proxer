@@ -144,10 +144,10 @@ def update_proxy_list(mode="hidemyname"):
 #! code section END
 
 class Proxer():
-    def __init__(self, file_path_output=os.path.join(os.getcwd(), 'output.txt'), file_path_save=os.path.join(os.getcwd(), 'save.txt')) -> None:
+    def __init__(self, file_path_output=os.path.join(os.getcwd(), 'output.txt'), file_path_save=os.path.join(os.getcwd(), 'save.txt'), check_services=["https://www.google.com/", "https://www.microsoft.com/", "https://www.apple.com/", "https://www.amazon.com/", "https://www.facebook.com/", "https://www.twitter.com/","https://www.yahoo.com/","https://www.netflix.com/","https://www.linkedin.com/","https://www.bing.com/","https://www.adobe.com/","https://www.samsung.com/"]) -> None:
         self.file_path_save = file_path_save
         self.file_path_output = file_path_output
-        self.check_services = ["https://www.google.com/", "https://www.microsoft.com/", "https://www.apple.com/", "https://www.amazon.com/", "https://www.facebook.com/", "https://www.twitter.com/","https://www.yahoo.com/","https://www.netflix.com/","https://www.linkedin.com/","https://www.bing.com/","https://www.adobe.com/","https://www.samsung.com/"]
+        self.check_services = check_services
         
     def __save_proxies(self, proxy, path):
         """
