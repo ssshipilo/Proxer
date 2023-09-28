@@ -12,7 +12,9 @@ proxy = Proxer(file_path_output=os.path.join(os.getcwd(), "output.txt"), file_pa
 ```
 
 *path must be absolute*
+<br/>
 file_path_output: path to the file where the list of sparse proxies will be saved.
+<br/>
 file_path_save: path to the file where the list of working proxies will be saved.
 
 ---
@@ -29,6 +31,7 @@ Parsing of popular proxy providers:
 
 Arguments:
 path: path to the file where the proxy list will be written. By default - the path from file_path_output.
+<br/>
 returned_array: whether to return the array of sparse proxies. By default - False.
 
 
@@ -38,6 +41,7 @@ Checking the proxy to make sure it works.
 
 Arguments:
 proxy: proxy to check.
+<br/>
 _class: whether to save the working proxy to a file. The default is False.
 
 
@@ -47,6 +51,7 @@ Updating the database of working proxies.
 
 Arguments:
 path: (optional) - path to the list of sparser proxies
+<br/>
 file: True - from your file. The default is False. Make parsing of known services with proxy
 
 
@@ -63,5 +68,7 @@ Cleaning databases, verified and unverified proxies.
 
 Arguments:
 mode: cleaning mode. Can be "output" (unchecked proxies) or "save" (checked proxies). The default is None (clearing both databases).
+<br/>
 path_output: path to the file with unchecked proxies.
+<br/>
 path_save: path to the file with verified proxies.
