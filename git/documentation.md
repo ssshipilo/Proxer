@@ -18,6 +18,21 @@ file_path_output: path to the file where the list of sparse proxies will be save
 file_path_save: path to the file where the list of working proxies will be saved.
 
 ---
+
+### To summarize
+```python
+from Proxer import Proxer
+import os
+
+proxy = Proxer(file_path_output=os.path.join(os.getcwd(), "output.txt"), file_path_save=os.path.join(os.getcwd(), "save.txt"))
+result = proxy.update_db_proxy() # Update or add files with database where you can mix proxy servers database
+result = proxy.get(1) # Get the number of references, the answer in an array
+print(result)
+
+result = proxy.parse("./test.txt") # Parses new proxies to a file
+result = proxy.clear_db() # Clearing databases, you can delete 2 at once, proxy list and verified proxy list
+```
+
 ## Methods
 
 ### parse()
