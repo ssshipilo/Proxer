@@ -67,7 +67,7 @@ A huge database of proxy servers can be found [here](https://raw.githubuserconte
 ## Todo:
 - [x] DONE. Create a library to get a working proxy
 - [x] DONE. Put it on PyPI
-- [ ] Find a specialist in multithreading to speed up the work of the code
+- [x] Find a specialist in multithreading to speed up the work of the code
 - [ ] Add new providers for scraping available proxies
 - [ ] Create a service so that ordinary users can use available proxies
 
