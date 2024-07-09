@@ -147,6 +147,68 @@ class proxy_scraper:
 
             return result
 
+    class proxy_list_download():
+        
+        def request():
+            try:
+                proxies_data = []
+                try:
+                    r = requests.get("https://www.proxy-list.download/api/v1/get?type=http")
+                    proxies = r.text.strip().split("\r\n")
+                    proxies = ["http://" + item for item in proxies]
+                    proxies_data.extend(proxies)
+                except:
+                    pass
+                
+                try:
+                    r = requests.get("https://www.proxy-list.download/api/v1/get?type=https")
+                    proxies = r.text.strip().split("\r\n")
+                    proxies = ["https://" + item for item in proxies]
+                    proxies_data.extend(proxies)
+                except:
+                    pass
+
+                try:
+                    r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks4")
+                    proxies = r.text.strip().split("\r\n")
+                    proxies = ["socks4://" + item for item in proxies]
+                    proxies_data.extend(proxies)
+                except:
+                    pass
+                
+                try:
+                    r = requests.get("https://www.proxy-list.download/api/v1/get?type=socks5")
+                    proxies = r.text.strip().split("\r\n")
+                    proxies = ["socks5://" + item for item in proxies]
+                    proxies_data.extend(proxies)
+                except:
+                    pass
+
+                return proxies_data
+            except:
+                return []
+            
+    class sslproxies():
+        
+        def request():
+            try:
+                r = requests.get("https://www.sslproxies.org/")
+                soup = BeautifulSoup(r.content, 'html.parser')
+                table = soup.find('div', {"class": "table-responsive"})
+                trs = table.find_all('tr')
+                proxies = []
+                for item in trs:
+                    tds = item.find_all("td")
+                    if len(tds) > 0:
+                        protocol = "https://" if str(tds[6].text) == "yes" else "http://"
+                        ip = protocol + tds[0].text + ":" + tds[1].text
+                        proxies.append(ip)
+
+                return proxies
+            except:
+                return []
+            
+
 def update_proxy_list(mode="all"):
     """
     Mode:
@@ -190,10 +252,23 @@ def update_proxy_list(mode="all"):
 
             output.extend(result)
         except:...
+
+    if mode == "proxy_list_download" or mode == "all":
+        try:
+            result = proxy_scraper.proxy_list_download.request()
+
+            output.extend(result)
+        except:...
+
+    if mode == "sslproxies" or mode == "all":
+        try:
+            result = proxy_scraper.sslproxies.request()
+
+            output.extend(result)
+        except:...
     
     return output
     
-#! code section END
 
 class Proxer():
     def __init__(self, file_path_output=os.path.join(os.getcwd(), 'output.txt'), file_path_save=os.path.join(os.getcwd(), 'save.txt'), check_services=["https://www.google.com/", "https://www.microsoft.com/", "https://www.apple.com/", "https://www.amazon.com/", "https://www.facebook.com/", "https://www.twitter.com/","https://www.yahoo.com/","https://www.netflix.com/","https://www.linkedin.com/","https://www.bing.com/","https://www.adobe.com/","https://www.samsung.com/"]) -> None:
@@ -268,7 +343,9 @@ class Proxer():
         add_proxies(update_proxy_list(mode="hidemyname"))
         add_proxies(update_proxy_list(mode="free_proxy_list"))
         add_proxies(update_proxy_list(mode="proxyscrape"))
-        add_proxies(update_proxy_list(mode="geonode"))
+        add_proxies(update_proxy_list(mode="proxy_list_download"))
+        add_proxies(update_proxy_list(mode="sslproxies"))
+        # add_proxies(update_proxy_list(mode="geonode"))
 
         if counter == 0:
             print(Fore.GREEN + "[FREE PROXY]" + Fore.WHITE + " You have the latest up-to-date proxies")
@@ -450,10 +527,12 @@ if __name__ == "__main__":
     proxy = Proxer(check_services=["https://www.google.com/"])
     
     # Parsing of new proxies, with uniqueization, if you already have this proxy, it will not add it to the file again
-    print(proxy.parse("./test.txt"))
+    proxy.parse("./test.txt")
 
-    # Update the proxy list
+    # # Update the proxy list
     proxy.update_db_proxy("./test.txt", True)
+
+
 
     # Get a working proxy
     # print(proxy.get(100))
@@ -476,3 +555,79 @@ if __name__ == "__main__":
 # });
 
 # window.screen = screenProxy;
+
+
+
+
+
+
+    # import cloudscraper
+
+    # scraper = cloudscraper.create_scraper()
+    # headers = {
+    #     "Accept":
+    #     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    #     "Accept-Encoding": "gzip, deflate, br, zstd",
+    #     "Accept-Language": "ru,ru-RU;q=0.9,en-US;q=0.8,en;q=0.7,uk-UA;q=0.6,uk;q=0.5,kk-KZ;q=0.4,kk;q=0.3",
+    #     "Cache-Control": "max-age=0",
+    #     "Priority": "u=0, i",
+    #     "Sec-Ch-Ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+    #     "Sec-Ch-Ua-Mobile": '?0',
+    #     "Sec-Ch-Ua-Platform": "Windows",
+    #     "Sec-Fetch-Dest": "document",
+    #     "Sec-Fetch-Mode": "navigate",
+    #     "Sec-Fetch-Site": "same-origin",
+    #     "Sec-Fetch-User": "?1",
+    #     "Upgrade-Insecure-Requests": "1",
+    #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    # }
+    # r = scraper.get("https://www.freeproxy.world/?type=&anonymity=&country=&speed=500&port=&page=1", headers=headers)
+    # print(r.content)
+    # soup = BeautifulSoup(r.content, 'html.parser')
+    # table = soup.find('table', {"class": "layui-table"})
+    # trs = table.find_all('tr')
+    # proxies = []
+    # for item in trs:
+    #     tds = item.find_all("td")
+    #     print(len(tds))
+    #     if len(tds) > 0:
+    #         # print(tds[0].text, tds[1].text, tds[2].text, tds[3].text)
+    #         pass
+
+
+    # data = {
+    #     "countries": [],
+    #     "page": 1,
+    #     "proxyProtocols": [],
+    #     "proxyTypes": [],
+    #     "size": 10
+    # }
+    # headers = {
+    #     "Accept":
+    #     "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
+    #     "Accept-Encoding": "gzip, deflate, br, zstd",
+    #     "Accept-Language": "ru,ru-RU;q=0.9,en-US;q=0.8,en;q=0.7,uk-UA;q=0.6,uk;q=0.5,kk-KZ;q=0.4,kk;q=0.3",
+    #     "Cache-Control": "max-age=0",
+    #     "Priority": "u=0, i",
+    #     "Sec-Ch-Ua": '"Not/A)Brand";v="8", "Chromium";v="126", "Google Chrome";v="126"',
+    #     "Sec-Ch-Ua-Mobile": '?0',
+    #     "Sec-Ch-Ua-Platform": "Windows",
+    #     "Sec-Fetch-Dest": "document",
+    #     "Sec-Fetch-Mode": "navigate",
+    #     "Sec-Fetch-Site": "same-origin",
+    #     "Sec-Fetch-User": "?1",
+    #     "Upgrade-Insecure-Requests": "1",
+    #     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+    # }
+    
+    # s = requests.Session()
+    # r = scraper.get("https://free.proxy-sale.com/pl/", headers=headers)
+    # headers = r.headers.copy()
+    # headers['Accept'] = "application/json"
+    # headers['Client-Ip'] = "77.253.191.57"
+    # headers['Accept-Encoding'] = "gzip, deflate, br, zstd"
+    # headers['Content-Type'] = "application/json"
+    # proxies = scraper.post("https://free.proxy-sale.com/api/front/main/pagination/filtration", data=data, headers=headers)
+    # print(proxies.text)
+    # if proxies.status_code == 200:
+    #     print(proxies.json())
